@@ -1,5 +1,7 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    overflow: hidden;
 }
 
 header {
@@ -12,33 +14,33 @@ header {
 .popup {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     z-index: 1;
-    /* Estilos adicionales para las animaciones */
-    animation: bounce 2s infinite alternate; /* Cambia la duración según sea necesario */
+    animation: bounce 2s infinite alternate;
 }
 
 @keyframes bounce {
     to {
-        transform: translateY(50vh);
+        transform: translateY(20vh);
     }
 }
 
 .popup img {
     max-width: 100%;
     height: auto;
+    border-radius: 8px; /* Bordes redondeados para la imagen */
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    color: #333;
+/* Estilo adicional para la imagen del encabezado */
+header img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilo adicional para agregar sombra al encabezado */
+header {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
