@@ -24,6 +24,17 @@ function createPopup() {
 
     // Inicia el movimiento del pop-up
     movePopup(newPopup);
+    // Dentro de la función createPopup(), después de configurar la posición aleatoria
+newPopup.style.left = `${Math.random() * window.innerWidth}px`;
+newPopup.style.top = `${Math.random() * window.innerHeight}px`;
+
+// Agrega un evento de clic para eliminar el pop-up al hacer clic en él
+newPopup.addEventListener('click', () => {
+    document.body.removeChild(newPopup);
+});
+
+document.body.appendChild(newPopup);
+
 }
 
 // Función para mover un pop-up con rebote
