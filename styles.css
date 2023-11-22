@@ -11,36 +11,35 @@ header {
     padding: 10px;
 }
 
+/* Estilo para el contenedor de pop-ups */
+#popups-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 .popup {
-    display: none;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    padding: 20px;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    z-index: 1;
     animation: bounce 2s infinite alternate;
 }
 
 @keyframes bounce {
     to {
-        transform: translateY(20vh);
+        transform: translateY(20px);
     }
 }
 
 .popup img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px; /* Bordes redondeados para la imagen */
+    border-radius: 8px;
 }
 
-/* Estilo adicional para la imagen del encabezado */
-header img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Estilo adicional para agregar sombra al encabezado */
-header {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
