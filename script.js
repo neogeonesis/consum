@@ -70,4 +70,3 @@ function showPopups() {
 
 // Inicia el ciclo de pop-ups automáticos
 showPopups();
-
