@@ -12,23 +12,7 @@
         <h1>Tienda en Línea</h1>
     </header>
 
-    <section class="product">
-        <img src="images/1.jpg" alt="Producto 1" onclick="showPopup('images/1.jpg', 'Descripción del Producto 1')">
-        <h2>Producto 1</h2>
-        <p>Precio: $20</p>
-    </section>
-
-    <!-- otras secciones similares para otros productos -->
-
     <!-- Popup -->
-    <div id="popup" class="popup">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <img id="popupImage" src="" alt="Popup Image">
-        <p id="popupDescription"></p> <!-- Agregamos este elemento -->
-    </div>
-
-    <script src="script.js"></script>
-
     <script>
         // Lista de imágenes para los pop-ups
         const popupImages = [
@@ -38,21 +22,44 @@
             // Agrega más imágenes según sea necesario
         ];
 
-        // Función para mostrar un pop-up de manera automática después de un tiempo aleatorio
-        function showRandomPopup() {
+        // Función para crear y mostrar un nuevo pop-up
+        function createPopup() {
             // Selecciona una imagen aleatoria
             const randomImage = popupImages[Math.floor(Math.random() * popupImages.length)];
 
-            // Muestra el pop-up
-            showPopup(randomImage, 'Descripción aleatoria');
+            // Crea un nuevo elemento de pop-up
+            const newPopup = document.createElement('div');
+            newPopup.classList.add('popup');
 
-            // Establece un tiempo aleatorio para mostrar el próximo pop-up (por ejemplo, entre 5 y 15 segundos)
-            const randomTime = Math.floor(Math.random() * (15000 - 5000 + 1) + 5000);
-            setTimeout(showRandomPopup, randomTime);
+            // Crea una nueva imagen
+            const newImage = document.createElement('img');
+            newImage.src = randomImage;
+            newImage.alt = 'Popup Image';
+
+            // Agrega la imagen al pop-up
+            newPopup.appendChild(newImage);
+
+            // Agrega el pop-up al cuerpo del documento
+            document.body.appendChild(newPopup);
+
+            // Establece un tiempo para eliminar el pop-up después de un tiempo (ajusta según sea necesario)
+            setTimeout(() => {
+                document.body.removeChild(newPopup);
+            }, 5000);
+        }
+
+        // Función para mostrar pop-ups continuamente
+        function showPopups() {
+            createPopup();
+
+            // Establece un tiempo aleatorio para mostrar el próximo pop-up
+            const randomTime = Math.floor(Math.random() * (5000 - 1000 + 1) + 1000);
+            setTimeout(showPopups, randomTime);
         }
 
         // Inicia el ciclo de pop-ups automáticos
-        setTimeout(showRandomPopup, 5000); // Espera 5 segundos antes de mostrar el primer pop-up
+        showPopups();
     </script>
 </body>
 </html>
+
