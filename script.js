@@ -9,6 +9,9 @@ const popupImages = [
 // Número de pop-ups que se mostrarán
 const numberOfPopups = 20;
 
+// Duración en milisegundos que los pop-ups estarán en pantalla antes de desaparecer
+const popupDuration = 5000;
+
 // Función para crear y mostrar un nuevo pop-up con movimiento
 function createPopup() {
     const randomImage = popupImages[Math.floor(Math.random() * popupImages.length)];
@@ -53,10 +56,14 @@ function movePopup(popup) {
 
     animate();
 
-    // Aumenta el tiempo que el pop-up permanece en pantalla a 10 segundos (10000 milisegundos)
+    // Event listener para eliminar el pop-up al pasar el mouse sobre él
+    popup.addEventListener('mouseover', () => {
+        document.getElementById('popups-container').removeChild(popup);
+    });
+
     setTimeout(() => {
         document.getElementById('popups-container').removeChild(popup);
-    }, 10000);
+    }, popupDuration);
 }
 
 // Función para mostrar pop-ups continuamente
