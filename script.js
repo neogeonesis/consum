@@ -64,8 +64,10 @@ function showPopups() {
         createPopup();
     }
 
+    // Llama a la función nuevamente para mostrar el siguiente conjunto de pop-ups después de 5 segundos
     setTimeout(showPopups, 5000);
 }
 
 // Inicia el ciclo de pop-ups automáticos
 showPopups();
+
