@@ -27,6 +27,11 @@ function createPopup() {
 
     // Inicia el movimiento del pop-up
     movePopup(newPopup);
+
+    // Event listener para eliminar el pop-up al hacer clic sobre él
+    newPopup.addEventListener('click', () => {
+        document.getElementById('popups-container').removeChild(newPopup);
+    });
 }
 
 // Función para mover un pop-up con rebote
@@ -57,13 +62,13 @@ function movePopup(newPopup) {
     animate();
 
     // Event listener para eliminar el pop-up al pasar el mouse sobre él
-    newPopup.addEventListener('mouseenter', () => {
+    newPopup.addEventListener('mouseover', () => {
         document.getElementById('popups-container').removeChild(newPopup);
         clearTimeout(popupTimer);
     });
 
     // Reiniciar el temporizador al sacar el mouse del pop-up
-    newPopup.addEventListener('mouseleave', resetTimer);
+    newPopup.addEventListener('mouseout', resetTimer);
 
     // Función para reiniciar el temporizador del pop-up
     function resetTimer() {
