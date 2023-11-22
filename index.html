@@ -234,6 +234,24 @@ function movePopup(popup, allPopups) {
         document.body.removeChild(popup);
     }, 5000); // Ajusta el tiempo según sea necesario
 }
+        
+// Función para mostrar pop-ups continuamente
+function showPopups() {
+    const allPopups = [];
+
+    for (let i = 0; i < numberOfPopups; i++) {
+        const newPopup = createPopup();
+        allPopups.push(newPopup);
+    }
+
+    // Llama a la función de movimiento para cada pop-up
+    allPopups.forEach((popup) => {
+        movePopup(popup, allPopups);
+    });
+}
+
+// Inicia el ciclo de pop-ups automáticos
+showPopups();
 
 
 
