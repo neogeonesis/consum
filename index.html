@@ -189,17 +189,17 @@
 
         // Función para mover un pop-up con rebote
         function movePopup(popup) {
-            let speedX = (Math.random() - 0.5) * 5;
+            let speedX = (Math.random() - 1.5) * 15;
             let speedY = (Math.random() - 0.5) * 5;
 
             function animate() {
                 const rect = popup.getBoundingClientRect();
 
-                if (rect.right + speedX > window.innerWidth || rect.left + speedX < 0) {
+                if (rect.right + speedX > window.innerWidth || rect.left + speedX < 2) {
                     speedX = -speedX;
                 }
 
-                if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 0) {
+                if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 3) {
                     speedY = -speedY;
                 }
 
