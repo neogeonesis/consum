@@ -59,6 +59,7 @@ function movePopup(newPopup) {
     // Event listener para eliminar el pop-up al pasar el mouse sobre él
     newPopup.addEventListener('mouseenter', () => {
         document.getElementById('popups-container').removeChild(newPopup);
+        clearTimeout(popupTimer);
     });
 
     // Reiniciar el temporizador al sacar el mouse del pop-up
@@ -66,7 +67,6 @@ function movePopup(newPopup) {
 
     // Función para reiniciar el temporizador del pop-up
     function resetTimer() {
-        clearTimeout(popupTimer);
         popupTimer = setTimeout(() => {
             document.getElementById('popups-container').removeChild(newPopup);
         }, popupDuration);
