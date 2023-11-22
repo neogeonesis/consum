@@ -14,17 +14,6 @@ function createPopup() {
     const randomImage = popupImages[Math.floor(Math.random() * popupImages.length)];
     const newPopup = document.createElement('div');
     newPopup.classList.add('popup');
-////////////////////
-     // Dentro de la función createPopup(), después de configurar la posición aleatoria
-newPopup.style.left = `${Math.random() * window.innerWidth}px`;
-newPopup.style.top = `${Math.random() * window.innerHeight}px`;
-
-// Agrega un evento de clic para eliminar el pop-up al hacer clic en él
-newPopup.addEventListener('click', () => {
-    document.body.removeChild(newPopup);
-});
-////////////////
-document.body.appendChild(newPopup);
 
     const newImage = document.createElement('img');
     newImage.src = randomImage;
@@ -35,8 +24,6 @@ document.body.appendChild(newPopup);
 
     // Inicia el movimiento del pop-up
     movePopup(newPopup);
-   
-
 }
 
 // Función para mover un pop-up con rebote
@@ -66,9 +53,15 @@ function movePopup(popup) {
 
     animate();
 
+    // Aumenta el tiempo que el pop-up permanece en pantalla a 10 segundos
     setTimeout(() => {
         document.getElementById('popups-container').removeChild(popup);
-    }, 8000);
+    }, 10000);
+
+    // Agrega un evento de mouseover para eliminar el pop-up al pasar el mouse sobre él
+    popup.addEventListener('mouseover', () => {
+        document.getElementById('popups-container').removeChild(popup);
+    });
 }
 
 // Función para mostrar pop-ups continuamente
@@ -78,7 +71,7 @@ function showPopups() {
     }
 
     // Llama a la función nuevamente para mostrar el siguiente conjunto de pop-ups después de 5 segundos
-    setTimeout(showPopups, 8000);
+    setTimeout(showPopups, 5000);
 }
 
 // Inicia el ciclo de pop-ups automáticos
