@@ -12,10 +12,19 @@
         <h1>Tienda en Línea</h1>
     </header>
 
+    <section class="product">
+        <img src="images/1.jpg" alt="Producto 1" onclick="showPopup('images/1.jpg', 'Descripción del Producto 1')">
+        <h2>Producto 1</h2>
+        <p>Precio: $20</p>
+    </section>
+
+    <!-- otras secciones similares para otros productos -->
+
     <!-- Popup -->
     <div id="popup" class="popup">
         <span class="close" onclick="closePopup()">&times;</span>
         <img id="popupImage" src="" alt="Popup Image">
+        <p id="popupDescription"></p> <!-- Agregamos este elemento -->
     </div>
 
     <script src="script.js"></script>
@@ -35,7 +44,7 @@
             const randomImage = popupImages[Math.floor(Math.random() * popupImages.length)];
 
             // Muestra el pop-up
-            showPopup(randomImage);
+            showPopup(randomImage, 'Descripción aleatoria');
 
             // Establece un tiempo aleatorio para mostrar el próximo pop-up (por ejemplo, entre 5 y 15 segundos)
             const randomTime = Math.floor(Math.random() * (15000 - 5000 + 1) + 5000);
