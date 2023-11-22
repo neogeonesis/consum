@@ -68,7 +68,7 @@ function movePopup(popup) {
 
     setTimeout(() => {
         document.getElementById('popups-container').removeChild(popup);
-    }, 5000);
+    }, 8000);
 }
 
 // Función para mostrar pop-ups continuamente
