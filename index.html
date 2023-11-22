@@ -187,10 +187,10 @@
             movePopup(newPopup);
         }
 
-       // Función para mover un pop-up con rebote
+      // Función para mover un pop-up con movimiento más aleatorio
 function movePopup(popup) {
-    let speedX = (Math.random() - 1.5) * 5;
-    let speedY = (Math.random() - 1.5) * 5;
+    let speedX = (Math.random() - 0.5) * 10; // Ajusta la velocidad según sea necesario
+    let speedY = (Math.random() - 0.5) * 10; // Ajusta la velocidad según sea necesario
 
     function animate() {
         const rect = popup.getBoundingClientRect();
@@ -213,8 +213,9 @@ function movePopup(popup) {
 
     setTimeout(() => {
         document.body.removeChild(popup);
-    }, 500);
+    }, 5000); // Ajusta el tiempo según sea necesario
 }
+
 
 
         // Función para mostrar pop-ups continuamente
