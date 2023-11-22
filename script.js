@@ -9,8 +9,8 @@ const popupImages = [
 // Número de pop-ups que se mostrarán
 const numberOfPopups = 20;
 
-// Duración en milisegundos que los pop-ups estarán en pantalla antes de desaparecer
-const popupDuration = 5000;
+// Duración en milisegundos que los pop-ups estarán en pantalla antes de desaparecer (10 segundos en este ejemplo)
+const popupDuration = 10000;
 
 // Función para crear y mostrar un nuevo pop-up con movimiento
 function createPopup() {
@@ -30,7 +30,7 @@ function createPopup() {
 }
 
 // Función para mover un pop-up con rebote
-function movePopup(popup) {
+function movePopup(newPopup) {
     let x = Math.random() * window.innerWidth;
     let y = Math.random() * window.innerHeight;
     let speedX = (Math.random() - 0.5) * 5;
@@ -48,8 +48,8 @@ function movePopup(popup) {
             speedY = -speedY;
         }
 
-        popup.style.left = `${x}px`;
-        popup.style.top = `${y}px`;
+        newPopup.style.left = `${x}px`;
+        newPopup.style.top = `${y}px`;
 
         requestAnimationFrame(animate);
     }
@@ -57,12 +57,24 @@ function movePopup(popup) {
     animate();
 
     // Event listener para eliminar el pop-up al pasar el mouse sobre él
-    popup.addEventListener('mouseover', () => {
-        document.getElementById('popups-container').removeChild(popup);
+    newPopup.addEventListener('mouseenter', () => {
+        document.getElementById('popups-container').removeChild(newPopup);
     });
 
-    setTimeout(() => {
-        document.getElementById('popups-container').removeChild(popup);
+    // Reiniciar el temporizador al sacar el mouse del pop-up
+    newPopup.addEventListener('mouseleave', resetTimer);
+
+    // Función para reiniciar el temporizador del pop-up
+    function resetTimer() {
+        clearTimeout(popupTimer);
+        popupTimer = setTimeout(() => {
+            document.getElementById('popups-container').removeChild(newPopup);
+        }, popupDuration);
+    }
+
+    // Inicia el temporizador al crear el pop-up
+    let popupTimer = setTimeout(() => {
+        document.getElementById('popups-container').removeChild(newPopup);
     }, popupDuration);
 }
 
