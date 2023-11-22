@@ -93,12 +93,12 @@
                 <a href="#" class="w3-bar-item w3-black w3-button">1</a>
                 <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
                 <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-                <                <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+                              <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
                 <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
             </div>
         </div>
 
-
+       
 
         <!-- Footer -->
         <footer class="w3-row-padding w3-padding-32">
@@ -186,73 +186,48 @@
             // Inicia el movimiento del pop-up
             movePopup(newPopup);
         }
-// Función para mover un pop-up con rebote
-function movePopup(popup, allPopups) {
-    let speedX = (Math.random() - 0.5) * 5;
-    let speedY = (Math.random() - 0.5) * 5;
 
-    function animate() {
-        const rect = popup.getBoundingClientRect();
+        // Función para mover un pop-up con rebote
+        function movePopup(popup) {
+            let speedX = (Math.random() - 0.5) * 5;
+            let speedY = (Math.random() - 0.5) * 5;
 
-        if (rect.right + speedX > window.innerWidth || rect.left + speedX < 0) {
-            speedX = -speedX;
+            function animate() {
+                const rect = popup.getBoundingClientRect();
+
+                if (rect.right + speedX > window.innerWidth || rect.left + speedX < 0) {
+                    speedX = -speedX;
+                }
+
+                if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 0) {
+                    speedY = -speedY;
+                }
+
+                popup.style.left = `${rect.left + speedX}px`;
+                popup.style.top = `${rect.top + speedY}px`;
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            setTimeout(() => {
+                document.body.removeChild(popup);
+            }, 500);
         }
-
-        if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 0) {
-            speedY = -speedY;
-        }
-
-        popup.style.left = `${rect.left + speedX}px`;
-        popup.style.top = `${rect.top + speedY}px`;
-
-       // Función para mover un pop-up con movimiento más aleatorio
-function movePopup(popup) {
-    let speedX = (Math.random() - 0.5) * 10; // Ajusta la velocidad según sea necesario
-    let speedY = (Math.random() - 0.5) * 10; // Ajusta la velocidad según sea necesario
-
-    function animate() {
-        const rect = popup.getBoundingClientRect();
-
-        if (rect.right + speedX > window.innerWidth || rect.left + speedX < 0) {
-            speedX = -speedX;
-        }
-
-        if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 0) {
-            speedY = -speedY;
-        }
-
-        popup.style.left = `${rect.left + speedX}px`;
-        popup.style.top = `${rect.top + speedY}px`;
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    setTimeout(() => {
-        document.body.removeChild(popup);
-    }, 5000); // Ajusta el tiempo según sea necesario
-}
-
 
         // Función para mostrar pop-ups continuamente
-function showPopups() {
-    const allPopups = [];
+        function showPopups() {
+            for (let i = 0; i < numberOfPopups; i++) {
+                createPopup();
+            }
 
-    for (let i = 0; i < numberOfPopups; i++) {
-        const newPopup = createPopup();
-        allPopups.push(newPopup);
-    }
+            // Llama a la función nuevamente para mostrar el siguiente conjunto de pop-ups después de 5 segundos
+            setTimeout(showPopups, 500);
+        }
 
-    // Llama a la función de movimiento para cada pop-up
-    allPopups.forEach((popup) => {
-        movePopup(popup, allPopups);
-    });
-}
-
-// Inicia el ciclo de pop-ups automáticos
-showPopups();
-
+        // Inicia el ciclo de pop-ups automáticos
+        showPopups();
     </script>
 
 </body>
