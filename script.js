@@ -9,37 +9,6 @@ const popupImages = [
 // Número de pop-ups que se mostrarán
 const numberOfPopups = 20;
 
-// Función para agregar un producto al carrito
-function addToCart(productName, price) {
-    const cartItems = document.getElementById('cart-items');
-    const totalPriceElement = document.getElementById('total-price');
-
-    // Crear un nuevo elemento de lista para el carrito
-    const newItem = document.createElement('li');
-    newItem.textContent = `${productName} - $${price}`;
-
-    // Agregar el nuevo elemento al carrito
-    cartItems.appendChild(newItem);
-
-    // Calcular el nuevo total y mostrarlo
-    const totalPrice = calculateTotalPrice(cartItems);
-    totalPriceElement.textContent = `Total: $${totalPrice}`;
-
-    // Mostrar un pop-up indicando que se ha agregado al carrito
-    showPopup(`¡${productName} ha sido agregado al carrito!`, '');
-}
-
-// Función para calcular el precio total del carrito
-function calculateTotalPrice(cartItems) {
-    let totalPrice = 0;
-    // Recorrer los elementos del carrito y sumar los precios
-    cartItems.childNodes.forEach(item => {
-        const price = parseFloat(item.textContent.split('$')[1]);
-        totalPrice += price;
-    });
-    return totalPrice.toFixed(2);
-}
-
 // Función para crear y mostrar un nuevo pop-up con movimiento
 function createPopup() {
     const randomImage = popupImages[Math.floor(Math.random() * popupImages.length)];
@@ -99,6 +68,25 @@ function showPopups() {
     setTimeout(showPopups, 5000);
 }
 
+// Función para agregar una entrada al blog
+function addBlogEntry(title, content) {
+    const blogSection = document.getElementById('blog');
+
+    const newEntry = document.createElement('article');
+    const entryTitle = document.createElement('h2');
+    entryTitle.textContent = title;
+    const entryContent = document.createElement('p');
+    entryContent.textContent = content;
+
+    newEntry.appendChild(entryTitle);
+    newEntry.appendChild(entryContent);
+    blogSection.appendChild(newEntry);
+}
+
+// Ejemplo: Agregar una entrada al blog después de 10 segundos
+setTimeout(() => {
+    addBlogEntry('Nuevo Artículo', 'Este es un nuevo artículo sobre compras.');
+}, 10000);
+
 // Inicia el ciclo de pop-ups automáticos
 showPopups();
-
