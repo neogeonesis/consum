@@ -39,6 +39,12 @@
             // Agrega la imagen al pop-up
             newPopup.appendChild(newImage);
 
+            // Posiciona el pop-up en una ubicación aleatoria
+            const randomX = Math.floor(Math.random() * (window.innerWidth - 200));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - 200));
+            newPopup.style.left = `${randomX}px`;
+            newPopup.style.top = `${randomY}px`;
+
             // Agrega el pop-up al cuerpo del documento
             document.body.appendChild(newPopup);
 
@@ -50,11 +56,13 @@
 
         // Función para mostrar pop-ups continuamente
         function showPopups() {
-            createPopup();
-
             // Establece un tiempo aleatorio para mostrar el próximo pop-up
-            const randomTime = Math.floor(Math.random() * (5000 - 1000 + 1) + 1000);
-            setTimeout(showPopups, randomTime);
+            const randomTime = Math.floor(Math.random() * (500 - 100 + 1) + 100);
+            setTimeout(() => {
+                createPopup();
+                // Llama a la función nuevamente para mostrar el siguiente pop-up
+                showPopups();
+            }, randomTime);
         }
 
         // Inicia el ciclo de pop-ups automáticos
