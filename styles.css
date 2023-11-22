@@ -9,18 +9,6 @@ header {
     padding: 10px;
 }
 
-.product {
-    text-align: center;
-    margin: 20px;
-}
-
-img {
-    width: 200px;
-    height: 200px;
-    cursor: pointer;
-}
-
-/* Popup Styles */
 .popup {
     display: none;
     position: fixed;
@@ -31,6 +19,14 @@ img {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     z-index: 1;
+    /* Estilos adicionales para las animaciones */
+    animation: bounce 2s infinite alternate; /* Cambia la duración según sea necesario */
+}
+
+@keyframes bounce {
+    to {
+        transform: translateY(50vh);
+    }
 }
 
 .popup img {
