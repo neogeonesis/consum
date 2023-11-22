@@ -13,61 +13,13 @@
     </header>
 
     <!-- Popup -->
-    <script>
-        // Lista de imágenes para los pop-ups
-        const popupImages = [
-            'images/1.jpg',
-            'images/2.jpg',
-            'images/3.jpg',
-            // Agrega más imágenes según sea necesario
-        ];
+    <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <img id="popupImage" src="" alt="Popup Image">
+        <p id="popupDescription"></p> <!-- Agregamos este elemento -->
+    </div>
 
-        // Función para crear y mostrar un nuevo pop-up
-        function createPopup() {
-            // Selecciona una imagen aleatoria
-            const randomImage = popupImages[Math.floor(Math.random() * popupImages.length)];
-
-            // Crea un nuevo elemento de pop-up
-            const newPopup = document.createElement('div');
-            newPopup.classList.add('popup');
-
-            // Crea una nueva imagen
-            const newImage = document.createElement('img');
-            newImage.src = randomImage;
-            newImage.alt = 'Popup Image';
-
-            // Agrega la imagen al pop-up
-            newPopup.appendChild(newImage);
-
-            // Posiciona el pop-up en una ubicación aleatoria
-            const randomX = Math.floor(Math.random() * (window.innerWidth - 200));
-            const randomY = Math.floor(Math.random() * (window.innerHeight - 200));
-            newPopup.style.left = `${randomX}px`;
-            newPopup.style.top = `${randomY}px`;
-
-            // Agrega el pop-up al cuerpo del documento
-            document.body.appendChild(newPopup);
-
-            // Establece un tiempo para eliminar el pop-up después de un tiempo (ajusta según sea necesario)
-            setTimeout(() => {
-                document.body.removeChild(newPopup);
-            }, 5000);
-        }
-
-        // Función para mostrar pop-ups continuamente
-        function showPopups() {
-            // Establece un tiempo aleatorio para mostrar el próximo pop-up
-            const randomTime = Math.floor(Math.random() * (500 - 100 + 1) + 100);
-            setTimeout(() => {
-                createPopup();
-                // Llama a la función nuevamente para mostrar el siguiente pop-up
-                showPopups();
-            }, randomTime);
-        }
-
-        // Inicia el ciclo de pop-ups automáticos
-        showPopups();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
 
