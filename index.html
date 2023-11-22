@@ -186,25 +186,44 @@
             // Inicia el movimiento del pop-up
             movePopup(newPopup);
         }
-
-  // Función para mover un pop-up con movimiento más aleatorio
-function movePopup(popup) {
-    let speedX = (Math.random() - 0.5) * 10; // Ajusta la velocidad según sea necesario
-    let speedY = (Math.random() - 0.5) * 10; // Ajusta la velocidad según sea necesario
+// Función para mover un pop-up con rebote entre ellos
+function movePopup(popup, allPopups) {
+    let angle = Math.random() * 2 * Math.PI; // Ángulo aleatorio en radianes
+    let speed = Math.random() * 5; // Velocidad aleatoria
 
     function animate() {
         const rect = popup.getBoundingClientRect();
 
-        if (rect.right + speedX > window.innerWidth || rect.left + speedX < 0) {
-            speedX = -speedX;
+        // Calcular las nuevas coordenadas basadas en el ángulo y la velocidad
+        const newLeft = rect.left + speed * Math.cos(angle);
+        const newTop = rect.top + speed * Math.sin(angle);
+
+        // Verificar los límites de la ventana y ajustar el ángulo si es necesario
+        if (newLeft < 0 || newLeft + rect.width > window.innerWidth) {
+            angle = Math.PI - angle; // Invertir el ángulo al chocar con los bordes laterales
+        }
+        if (newTop < 0 || newTop + rect.height > window.innerHeight) {
+            angle = -angle; // Invertir el ángulo al chocar con los bordes superior o inferior
         }
 
-        if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 0) {
-            speedY = -speedY;
-        }
+        // Verificar y ajustar el ángulo al chocar con otros pop-ups
+        allPopups.forEach((otherPopup) => {
+            if (otherPopup !== popup) {
+                const otherRect = otherPopup.getBoundingClientRect();
 
-        popup.style.left = `${rect.left + speedX}px`;
-        popup.style.top = `${rect.top + speedY}px`;
+                if (
+                    newLeft < otherRect.right &&
+                    newLeft + rect.width > otherRect.left &&
+                    newTop < otherRect.bottom &&
+                    newTop + rect.height > otherRect.top
+                ) {
+                    angle = Math.random() * 2 * Math.PI; // Cambiar aleatoriamente el ángulo al chocar con otro pop-up
+                }
+            }
+        });
+
+        popup.style.left = `${newLeft}px`;
+        popup.style.top = `${newTop}px`;
 
         requestAnimationFrame(animate);
     }
@@ -215,6 +234,7 @@ function movePopup(popup) {
         document.body.removeChild(popup);
     }, 5000); // Ajusta el tiempo según sea necesario
 }
+
 
 
 
