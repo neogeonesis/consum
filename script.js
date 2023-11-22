@@ -83,6 +83,18 @@ function addBlogEntry(title, content) {
     blogSection.appendChild(newEntry);
 }
 
+// Función para agregar un producto al carrito
+function addToCart(product, price) {
+    const cartItemsElement = document.getElementById('cart-items');
+    const totalElement = document.getElementById('total-price');
+
+    const cartItems = parseInt(cartItemsElement.textContent);
+    cartItemsElement.textContent = cartItems + 1;
+
+    const total = parseInt(totalElement.textContent.replace('$', '')) + price;
+    totalElement.textContent = `Total: $${total.toFixed(2)}`;
+}
+
 // Ejemplo: Agregar una entrada al blog después de 10 segundos
 setTimeout(() => {
     addBlogEntry('Nuevo Artículo', 'Este es un nuevo artículo sobre compras.');
