@@ -188,33 +188,33 @@
         }
 
         // Función para mover un pop-up con rebote
-        function movePopup(popup) {
-            let speedX = (Math.random() - 0.5) * 5;
-            let speedY = (Math.random() - 1.5) * 5;
+function movePopup(popup) {
+    let speedX = (Math.random() - 0.5) * 5;
+    let speedY = (Math.random() - 0.5) * 5;
 
-            function animate() {
-                const rect = popup.getBoundingClientRect();
+    function animate() {
+        const rect = popup.getBoundingClientRect();
 
-                if (rect.right + speedX > window.innerWidth || rect.left + speedX < 0) {
-                    speedX = -speedX;
-                }
-
-                if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 0) {
-                    speedY = -speedY;
-                }
-
-                popup.style.left = `${rect.left + speedX}px`;
-                popup.style.top = `${rect.top + speedY}px`;
-
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-
-            setTimeout(() => {
-                document.body.removeChild(popup);
-            }, 500);
+        if (rect.right + speedX > window.innerWidth || rect.left + speedX < 0) {
+            speedX = -speedX;
         }
+
+        if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 0) {
+            speedY = -speedY;
+        }
+
+        popup.style.left = `${rect.left + speedX}px`;
+        popup.style.top = `${rect.top + speedY}px`;
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    setTimeout(() => {
+        document.body.removeChild(popup);
+    }, 500);
+}
 
         // Función para mostrar pop-ups continuamente
         function showPopups() {
