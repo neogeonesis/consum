@@ -53,15 +53,10 @@ function movePopup(popup) {
 
     animate();
 
-    // Aumenta el tiempo que el pop-up permanece en pantalla a 10 segundos
+    // Aumenta el tiempo que el pop-up permanece en pantalla a 10 segundos (10000 milisegundos)
     setTimeout(() => {
         document.getElementById('popups-container').removeChild(popup);
     }, 10000);
-
-    // Agrega un evento de mouseover para eliminar el pop-up al pasar el mouse sobre él
-    popup.addEventListener('mouseover', () => {
-        document.getElementById('popups-container').removeChild(popup);
-    });
 }
 
 // Función para mostrar pop-ups continuamente
