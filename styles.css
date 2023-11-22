@@ -41,3 +41,20 @@ header {
     height: auto;
     border-radius: 8px;
 }
+
+#blog {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+#blog article {
+    margin-bottom: 20px;
+}
+
+#blog h2 {
+    color: #333;
+}
+
+#blog p {
+    color: #666;
+}
