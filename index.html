@@ -200,7 +200,7 @@
                 }
 
                 if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 3) {
-                 
+                 speedY = -speedY;
                 }
 
                 popup.style.left = `${rect.left + speedX}px`;
