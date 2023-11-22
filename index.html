@@ -5,89 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda en Línea</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Agregado el estilo de W3.CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
     <style>
-        /* Agregado el estilo del popup */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-
-        #popups-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .popup {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            animation: bounce 2s infinite alternate;
-        }
-
-        @keyframes bounce {
-            to {
-                transform: translateY(20px);
-            }
-        }
-
-        .popup img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        #blog {
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
-        #blog article {
-            margin-bottom: 20px;
-        }
-
-        #blog h2 {
-            color: #333;
-        }
-
-        #blog p {
-            color: #666;
-        }
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+        .w3-bar-block .w3-bar-item {padding:20px}
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Tienda en Línea</h1>
-    </header>
+    <!-- Barra superior -->
+    <div class="w3-top">
+        <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+            <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+            <div class="w3-right w3-padding-16">Mail</div>
+            <div class="w3-center w3-padding-16">My Food</div>
+        </div>
+    </div>
 
-    <!-- Popups Container -->
-    <div id="popups-container"></div>
+    <!-- Contenido de la página -->
+    <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
 
-    <!-- Sección del Blog -->
-    <section id="blog">
-        <!-- Agrega tus entradas de blog aquí -->
-        <article>
-            <h2>Titulo del Artículo</h2>
-            <p>Contenido del artículo...</p>
-        </article>
-        <!-- Puedes agregar más artículos según sea necesario -->
-    </section>
+        <!-- Primer Grid de Fotos -->
+        <div class="w3-row-padding w3-padding-16 w3-center" id="food">
+            <!-- Contenido del grid... -->
+        </div>
 
-    <script src="script.js"></script>
+        <!-- Segundo Grid de Fotos -->
+        <div class="w3-row-padding w3-padding-16 w3-center">
+            <!-- Contenido del segundo grid... -->
+        </div>
+
+        <!-- Paginación -->
+        <div class="w3-center w3-padding-32">
+            <div class="w3-bar">
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+                <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+                <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+            </div>
+        </div>
+
+        <hr id="about">
+
+        <!-- Sección "About" -->
+        <div class="w3-container w3-padding-32 w3-center">  
+            <!-- Contenido de la sección "About"... -->
+        </div>
+        <hr>
+        
+        <!-- Pie de página -->
+        <footer class="w3-row-padding w3-padding-32">
+            <!-- Contenido del pie de página... -->
+        </footer>
+
+        <!-- Contenedor de Pop-ups -->
+        <div id="popups-container"></div>
+
+    </div>
+
+    <!-- Script para abrir y cerrar la barra lateral -->
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+
+    <!-- Script de los Pop-ups -->
+    <script>
+        // Lista de imágenes para los pop-ups
+        const popupImages = [
+            'images/1.jpg',
+            'images/2.jpg',
+            'images/3.jpg',
+            // Agrega más imágenes según sea necesario
+        ];
+
+        // Número de pop-ups que se mostrarán
+        const numberOfPopups = 20;
+
+        // Función para crear y mostrar un nuevo pop-up con movimiento
+        function createPopup() {
+            const randomImage = popupImages[Math.floor(Math.random() * popupImages.length)];
+            const newPopup = document.createElement('div');
+            newPopup.classList.add('popup');
+
+            const newImage = document.createElement('img');
+            newImage.src = randomImage;
+            newImage.alt = 'Popup Image';
+
+            newPopup.appendChild(newImage);
+
+            // Establecer posición aleatoria en la página
+            newPopup.style.left = `${Math.random() * window.innerWidth}px`;
+            newPopup.style.top = `${Math.random() * window.innerHeight}px`;
+
+            document.body.appendChild(newPopup);
+
+            // Inicia el movimiento del pop-up
+            movePopup(newPopup);
+        }
+
+        // Función para mover un pop-up con rebote
+        function movePopup(popup) {
+            let speedX = (Math.random() - 0.5) * 5;
+            let speedY = (Math.random() - 0.5) * 5;
+
+            function animate() {
+                const rect = popup.getBoundingClientRect();
+
+                if (rect.right + speedX > window.innerWidth || rect.left + speedX < 0) {
+                    speedX = -speedX;
+                }
+
+                if (rect.bottom + speedY > window.innerHeight || rect.top + speedY < 0) {
+                    speedY = -speedY;
+                }
+
+                popup.style.left = `${rect.left + speedX}px`;
+                popup.style.top = `${rect.top + speedY}px`;
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            setTimeout(() => {
+                document.body.removeChild(popup);
+            }, 5000);
+        }
+
+        // Función para mostrar pop-ups continuamente
+        function showPopups() {
+            for (let i = 0; i < numberOfPopups; i++) {
+                createPopup();
+            }
+
+            // Llama a la función nuevamente para mostrar el siguiente conjunto de pop-ups después de 5 segundos
+            setTimeout(showPopups, 5000);
+        }
+
+        // Inicia el ciclo de pop-ups automáticos
+        showPopups();
+    </script>
+
 </body>
 </html>
